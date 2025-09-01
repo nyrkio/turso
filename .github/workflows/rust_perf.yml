@@ -11,7 +11,7 @@ env:
 
 jobs:
   bench:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: nyrkio-perf
     steps:
       - uses: actions/checkout@v3
       - uses: useblacksmith/setup-node@v5
@@ -54,7 +54,7 @@ jobs:
           nyrkio-settings-threshold: 0%
 
   clickbench:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: nyrkio-perf
     steps:
       - uses: actions/checkout@v3
       - uses: useblacksmith/setup-node@v5
@@ -101,7 +101,8 @@ jobs:
           nyrkio-public: true
 
   tpc-h-criterion:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: nyrkio-perf
+
     env:
       DB_FILE: "perf/tpc-h/TPC-H.db"
     steps:
@@ -155,14 +156,16 @@ jobs:
           nyrkio-settings-threshold: 0%
 
   tpc-h:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: nyrkio-perf
+
     steps:
       - uses: actions/checkout@v3
       - name: TPC-H
         run: ./perf/tpc-h/benchmark.sh
 
   vfs-bench-compile:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: nyrkio-perf
+
     steps:
       - uses: actions/checkout@v3
       - uses: useblacksmith/rust-cache@v3
