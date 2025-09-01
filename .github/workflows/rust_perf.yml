@@ -14,7 +14,7 @@ jobs:
     runs-on: nyrkio-perf
     steps:
       - uses: actions/checkout@v3
-      - uses: useblacksmith/setup-node@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
       #     cache: 'npm'
@@ -57,7 +57,7 @@ jobs:
     runs-on: nyrkio-perf
     steps:
       - uses: actions/checkout@v3
-      - uses: useblacksmith/setup-node@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
 
@@ -107,13 +107,13 @@ jobs:
       DB_FILE: "perf/tpc-h/TPC-H.db"
     steps:
       - uses: actions/checkout@v3
-      - uses: useblacksmith/rust-cache@v3
+      - uses: actions/rust-cache@v3
         with:
           prefix-key: "v1-rust" # can be updated if we need to reset caches due to non-trivial change in the dependencies (for example, custom env var were set for single workspace project)
 
       - name: Cache TPC-H
         id: cache-primes
-        uses: useblacksmith/cache@v5
+        uses: actions/cache@v5
         with:
           path: ${{ env.DB_FILE }}
           key: tpc-h
@@ -168,7 +168,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: useblacksmith/rust-cache@v3
+      - uses: actions/rust-cache@v3
         with:
           prefix-key: "v1-rust" # can be updated if we need to reset caches due to non-trivial change in the dependencies (for example, custom env var were set for single workspace project)
 
@@ -176,7 +176,7 @@ jobs:
         run: cargo build --release --verbose
 
       - name: Install uv
-        uses: useblacksmith/setup-uv@v4
+        uses: actions/setup-uv@v4
         with:
           enable-cache: true
 
