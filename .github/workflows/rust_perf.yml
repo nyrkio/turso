@@ -57,7 +57,7 @@ jobs:
     runs-on: nyrkio-perf
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
 
@@ -164,11 +164,11 @@ jobs:
         run: ./perf/tpc-h/benchmark.sh
 
   vfs-bench-compile:
-    runs-on: nyrkio-perf
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/rust-cache@v3
+      - uses: useblacksmith/rust-cache@v3
         with:
           prefix-key: "v1-rust" # can be updated if we need to reset caches due to non-trivial change in the dependencies (for example, custom env var were set for single workspace project)
 
@@ -176,7 +176,7 @@ jobs:
         run: cargo build --release --verbose
 
       - name: Install uv
-        uses: actions/setup-uv@v4
+        uses: useblacksmith/setup-uv@v4
         with:
           enable-cache: true
 
