@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 MINIMUM_RUST_VERSION := 1.73.0
 CURRENT_RUST_VERSION := $(shell rustc -V | sed -E 's/rustc ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
 CURRENT_RUST_TARGET := $(shell rustc -vV | grep host | cut -d ' ' -f 2)
